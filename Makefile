@@ -12,9 +12,6 @@ test: CircularBuffer_tests.exe
 
 CircularBuffer_tests.exe: CircularBuffer_tests.cpp CircularBuffer.hpp
 	$(CXX) $(CXXFLAGS) $< -o $@
-	
-performance.exe: performance.cpp RingBuffer.hpp
-	$(CXX) $(CXXFLAGS) $< -o $@
 
 performance.exe: performance.cpp CircularBuffer.hpp
 	$(CXX) $(OPTFLAGS) $< -o $@
