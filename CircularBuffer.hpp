@@ -11,18 +11,17 @@ public:
 
   // EFFECTS: Constructs an empty CircularBuffer.
   CircularBuffer()
-    : data(new T[INITIAL_CAPACITY]),
-    head(0), tail(0), num_elts(0), capacity(INITIAL_CAPACITY) {
+    : head(0), tail(0), num_elts(0), capacity(CAPACITY) {
 
   }
 
   // Copy constructor -- we'll cover this SOON(TM).
   CircularBuffer(const CircularBuffer<T> &other)
-    : data(new T[other.capacity]),
-      capacity(other.capacity) {
+    : capacity(other.capacity) {
     copy_data_from(other);
   }
 
+  // REQUIRES: size < capacity
   // MODIFIES: *this
   // EFFECTS:  Adds a new value to the back of the buffer
   //           moves tail to the new position
@@ -81,11 +80,11 @@ public:
 private:
 
   // The initial capacity of a CircularBuffer when it is created
-  static const int INITIAL_CAPACITY = 4;
+  static const int CAPACITY = 1000;
 
   // The array to hold the N elements stored in this circular buffer in positions determined
   // by head and tail
-  T * data;      // INVARIANT: data points to the start of an array of capacity elements
+  T data[CAPACITY];      // INVARIANT: data is a fixed size array with capacity CAPACITY
 
   // head is the index marking the beginning of the data in the buffer
   // tail is the index where a new element would be added in the buffer
@@ -94,25 +93,6 @@ private:
   int tail;      // INVARIANT: 0 <= tail < capacity
   int num_elts;  // INVARIANT: 0 <= num_elts <= capacity
   int capacity;
-
-  // MODIFIES: *this
-  // EFFECTS:  Replaces the array used to store the elements with a
-  //           new, larger array.
-  void grow() {
-    // Place elements at the start of a new, larger array
-    T *new_data = new T[2*capacity];
-    for(int i = 0; i < num_elts; ++i) {
-      new_data[i] = at(i);
-    }
-
-    delete[] data;  // discard the old array
-    data = new_data;
-
-    head = 0;
-    tail = num_elts;
-    capacity *= 2;
-    // num_elts remains the same
-  }
 
   // REQUIRES: this CircularBuffer has capacity >= other.num_elts
   // MODIFIES: *this
