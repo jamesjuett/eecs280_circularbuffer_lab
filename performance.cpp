@@ -11,6 +11,7 @@
 
 using namespace std;
 
+const int TEST_ITERATIONS = 1'000'000;
 
 static void test_vector(int N) {
   // Fill a vector with N integers
@@ -19,14 +20,13 @@ static void test_vector(int N) {
     v.push_back(i);
   }
 
-  // Push and pop N times
-  for (int i = 0; i < N; i++) {
-    v.push_back(i);
-
+  // Push and pop TEST_ITERATIONS times
+  for (int i = 0; i < TEST_ITERATIONS; i++) {
     // Vectors have no pop_front() function, but the
     // equivalent operation, v.erase(v.begin()) will remove
     // the first element and shift all the other elements down by one.
     v.erase(v.begin());
+    v.push_back(i);
   }
 }
 
@@ -39,10 +39,10 @@ static void test_circularbuffer(int N) {
     rb.push_back(i);
   }
 
-  // Push and pop N times
-  for (int i = 0; i < N; i++) {
-    rb.push_back(i);
+  // Push and pop TEST_ITERATIONS times
+  for (int i = 0; i < TEST_ITERATIONS; i++) {
     rb.pop_front();
+    rb.push_back(i);
   }
 }
 
