@@ -27,13 +27,13 @@ public:
   // MODIFIES: *this
   // EFFECTS:  Removes the element at the front of the buffer
   //           moves head to the new position
-  void pop_front() {assert(!empty());
+  void pop_front() {
     assert(false); // TODO: Replace with your implementation
   }
 
   // REQUIRES: buffer is not empty
   // EFFECTS:  Returns the value at the front of the buffer
-  T &front() {assert(!empty());
+  T &front() {
     assert(false); // TODO: Replace with your implementation
   }
 
