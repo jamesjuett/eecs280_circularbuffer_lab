@@ -73,12 +73,12 @@ public:
 
 private:
 
-  // The initial capacity of a CircularBuffer when it is created
+  // The maximum capacity of a CircularBuffer
   static const int CAPACITY = 1000;
 
   // The array to hold the N elements stored in this circular buffer in positions determined
   // by head and tail
-  T data[CAPACITY];      // INVARIANT: data is a fixed size array with capacity CAPACITY
+  T data[CAPACITY];
 
   // head is the index marking the beginning of the data in the buffer
   // tail is the index where a new element would be added in the buffer
