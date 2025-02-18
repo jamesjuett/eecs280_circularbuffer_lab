@@ -11,11 +11,11 @@ public:
 
   // EFFECTS: Constructs an empty CircularBuffer.
   CircularBuffer()
-    : head(0), tail(0), num_elts(0), capacity(CAPACITY) {
+    : head(0), tail(0), num_elts(0) {
 
   }
 
-  // REQUIRES: size < capacity
+  // REQUIRES: size < CAPACITY
   // MODIFIES: *this
   // EFFECTS:  Adds a new value to the back of the buffer
   //           moves tail to the new position
@@ -27,13 +27,13 @@ public:
   // MODIFIES: *this
   // EFFECTS:  Removes the element at the front of the buffer
   //           moves head to the new position
-  void pop_front() {
+  void pop_front() {assert(!empty());
     assert(false); // TODO: Replace with your implementation
   }
 
   // REQUIRES: buffer is not empty
   // EFFECTS:  Returns the value at the front of the buffer
-  T &front() {
+  T &front() {assert(!empty());
     assert(false); // TODO: Replace with your implementation
   }
 
@@ -50,13 +50,13 @@ public:
   // REQUIRES: 0 <= index and index < number of elements in this CircularBuffer.
   // EFFECTS:  Returns (by reference) the element that is index positions from head.
   T & at(int index) {
-    return data[(head + index) % capacity];
+    return data[(head + index) % CAPACITY];
   }
 
   // REQUIRES: 0 <= index and index < number of elements in this CircularBuffer.
   // EFFECTS:  Returns (by const reference) the element that is index positions from head.
   const T & at(int index) const {
-    return data[(head + index) % capacity];
+    return data[(head + index) % CAPACITY];
   }
 
   // EFFECTS:  Prints the buffer to os.
@@ -83,10 +83,9 @@ private:
   // head is the index marking the beginning of the data in the buffer
   // tail is the index where a new element would be added in the buffer
   // num_elts is the number of elements currently in the buffer
-  int head;      // INVARIANT: 0 <= head < capacity
-  int tail;      // INVARIANT: 0 <= tail < capacity
-  int num_elts;  // INVARIANT: 0 <= num_elts <= capacity
-  int capacity;
+  int head;      // INVARIANT: 0 <= head < CAPACITY
+  int tail;      // INVARIANT: 0 <= tail < CAPACITY
+  int num_elts;  // INVARIANT: 0 <= num_elts <= CAPACITY
 
 };
 
