@@ -74,7 +74,7 @@ public:
 private:
 
   // The maximum capacity of a CircularBuffer
-  static const int CAPACITY = 1000;
+  static const int CAPACITY = 10000;
 
   // The array to hold the N elements stored in this circular buffer in positions determined
   // by head and tail
