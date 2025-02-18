@@ -15,12 +15,6 @@ public:
 
   }
 
-  // Copy constructor -- we'll cover this SOON(TM).
-  CircularBuffer(const CircularBuffer<T> &other)
-    : capacity(other.capacity) {
-    copy_data_from(other);
-  }
-
   // REQUIRES: size < capacity
   // MODIFIES: *this
   // EFFECTS:  Adds a new value to the back of the buffer
@@ -93,25 +87,6 @@ private:
   int tail;      // INVARIANT: 0 <= tail < capacity
   int num_elts;  // INVARIANT: 0 <= num_elts <= capacity
   int capacity;
-
-  // REQUIRES: this CircularBuffer has capacity >= other.num_elts
-  // MODIFIES: *this
-  // EFFECTS:  Copies all elements from the other circular buffer into this one,
-  //           replacing any existing elements. They are copied to beginning
-  //           of the data array and the head/tail are adjusted accordingly.
-  void copy_data_from(const CircularBuffer &other) {
-
-    // Copy elements from other, placing at the start of our own array
-    for(int i = 0; i < other.num_elts; ++i) {
-      // using .at(i) accounts for possibly different head/tail of other
-      data[i] = other.at(i);
-    }
-
-    // Adjust head/tail and num_elts to match new data
-    head = 0;
-    tail = other.num_elts;
-    num_elts = other.num_elts;
-  }
 
 };
 
