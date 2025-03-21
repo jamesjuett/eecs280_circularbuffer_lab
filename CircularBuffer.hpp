@@ -105,19 +105,8 @@ private:
   // EFFECTS:  Replaces the array used to store the elements with a
   //           new, larger array.
   void grow() {
-    // Place elements at the start of a new, larger array
-    T *new_data = new T[2*capacity];
-    for(int i = 0; i < num_elts; ++i) {
-      new_data[i] = at(i);
-    }
-
-    delete[] data;  // discard the old array
-    data = new_data;
-
-    head = 0;
-    tail = num_elts;
-    capacity *= 2;
-    // num_elts remains the same
+    //TODO: Replace with your implementation
+    assert(false);
   }
 
   // REQUIRES: this CircularBuffer has capacity >= other.num_elts
