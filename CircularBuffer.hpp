@@ -33,9 +33,8 @@ public:
 
   // REQUIRES: buffer is not empty
   // EFFECTS:  Returns the value at the front of the buffer
-  T &front() {
-    assert(false); // TODO: Replace with your implementation
-  }
+  // TODO: REPLACE WITH YOUR IMPLEMENTATION OF front()
+
 
   // EFFECTS:  Returns the current size of the buffer
   int size() const {
@@ -49,15 +48,8 @@ public:
 
   // REQUIRES: 0 <= index and index < number of elements in this CircularBuffer.
   // EFFECTS:  Returns (by reference) the element that is index positions from head.
-  T & at(int index) {
-    return data[(head + index) % CAPACITY];
-  }
+  // TODO: REPLACE WITH YOUR IMPLEMENTATION OF at(int index)
 
-  // REQUIRES: 0 <= index and index < number of elements in this CircularBuffer.
-  // EFFECTS:  Returns (by const reference) the element that is index positions from head.
-  const T & at(int index) const {
-    return data[(head + index) % CAPACITY];
-  }
 
   // EFFECTS:  Prints the buffer to os.
   void print(std::ostream &os) const{
