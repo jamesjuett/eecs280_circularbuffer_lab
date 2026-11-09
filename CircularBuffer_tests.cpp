@@ -146,6 +146,38 @@ TEST(circularbuffer_grow) {
   ASSERT_EQUAL(rb.at(4), 10);
 }
 
+// Tests for growing the circular buffer when it wraps around
+TEST(circular_buffer_grow_wrapped) {
+  CircularBuffer<int> rb;
+  for (int i = 0; i < 4; ++i) { // initial capacity is 4
+    rb.push_back(i);
+  }
+  ASSERT_EQUAL(rb.size(), 4);
+  ASSERT_EQUAL(rb.at(3), 3);
+
+  // move the head
+  rb.pop_front(); // removes 1
+  rb.pop_front(); // removes 2
+
+  ASSERT_EQUAL(rb.size(), 2);
+  ASSERT_EQUAL(rb.at(1), 3);
+
+  rb.push_back(4);
+  rb.push_back(5);
+
+  ASSERT_EQUAL(rb.size(), 4);
+  ASSERT_EQUAL(rb.at(3), 5);
+
+  // This will trigger the grow function
+  rb.push_back(6);
+  ASSERT_EQUAL(rb.size(), 5);
+  ASSERT_EQUAL(rb.at(0), 2)
+  ASSERT_EQUAL(rb.at(1), 3)
+  ASSERT_EQUAL(rb.at(2), 4)
+  ASSERT_EQUAL(rb.at(3), 5)
+  ASSERT_EQUAL(rb.at(4), 6)
+}
+
 // Tests for overloaded operator
 TEST(circularbuffer_ostream_operator) {
   CircularBuffer<int> rb;
