@@ -156,8 +156,8 @@ TEST(circular_buffer_grow_wrapped) {
   ASSERT_EQUAL(rb.at(3), 3);
 
   // move the head
+  rb.pop_front(); // removes 0
   rb.pop_front(); // removes 1
-  rb.pop_front(); // removes 2
 
   ASSERT_EQUAL(rb.size(), 2);
   ASSERT_EQUAL(rb.at(1), 3);
